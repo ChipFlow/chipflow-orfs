@@ -1,5 +1,5 @@
 [project]
-name = "pyorfs"
+name = "chipflow-orfs"
 description = "Default template for PDM package"
 authors = [
     {name = "Rob Taylor", email = "rob.taylor@chipflow.io"},
