@@ -1,0 +1,21 @@
+[project]
+name = "pyorfs"
+description = "Default template for PDM package"
+authors = [
+    {name = "Rob Taylor", email = "rob.taylor@chipflow.io"},
+]
+dependencies = []
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+dynamic = ["version"]
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pdm.build]
+include = ["vendor/orfs"]

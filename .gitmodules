@@ -1,0 +1,4 @@
+[submodule "vendor/orfs"]
+	path = vendor/orfs
+	url = git@github.com:ChipFlow/orfs-gf130.git
+	branch = chipflow
