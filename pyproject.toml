@@ -1,6 +1,6 @@
 [project]
-name = "chipflow-orfs"
-description = "Default template for PDM package"
+name = "chipflow_orfs"
+description = "Simple packaging of ORFS, stripped down"
 authors = [
     {name = "Rob Taylor", email = "rob.taylor@chipflow.io"},
 ]
@@ -10,6 +10,9 @@ readme = "README.md"
 license = {text = "MIT"}
 dynamic = ["version"]
 
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
@@ -18,4 +21,25 @@ distribution = true
 source = "scm"
 
 [tool.pdm.build]
-include = ["vendor/orfs"]
+includes=['chipflow-orfs']
+source-includes = [
+    "vendor/orfs/flow/scripts",
+    "vendor/orfs/flow/util",
+    "vendor/orfs/flow/platforms",
+    "vendor/orfs/flow/designs/**/config.mk",
+]
+
+[tool.pdm.build.wheel-data]
+data = [
+    {path = "vendor/orfs/flow/scripts/**/*", relative-to = "vendor/orfs"},
+    {path = "vendor/orfs/flow/util/**/*", relative-to = "vendor/orfs"},
+    {path = "vendor/orfs/flow/platforms/sky*/**/*", relative-to = "vendor/orfs"},
+    {path = "vendor/orfs/flow/platforms/gf*/**/*", relative-to = "vendor/orfs"},
+    {path = "vendor/orfs/flow/platforms/ihp*/**/*", relative-to = "vendor/orfs"},
+    {path = "vendor/orfs/flow/designs/**/config.mk", relative-to = "vendor/orfs"},
+]
+
+[dependency-groups]
+test = [
+    "pytest>=8.3.4",
+]
