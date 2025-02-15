@@ -14,7 +14,7 @@ dynamic = ["version"]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-[pytest]
+[tool.pytest.ini_options]
 norecursedirs = "vendor"
 
 [tool.pdm]
