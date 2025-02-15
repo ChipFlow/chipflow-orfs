@@ -14,11 +14,17 @@ dynamic = ["version"]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[pytest]
+norecursedirs = "vendor"
+
 [tool.pdm]
 distribution = true
 
 [tool.pdm.version]
 source = "scm"
+
+[tool.pdm.scripts]
+test.cmd = "pytest"
 
 [tool.pdm.build]
 includes=['chipflow-orfs']

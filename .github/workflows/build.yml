@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+name: CI
+jobs:
+
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v4
+      - name: Install dependencies
+        run: |
+          pdm install
+      - name: Run tests
+        run: |
+          pdm test
+      - name: Build Wheel
+        run: |
+          pdm build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chipflow-orfs-wheel
+          path: dist/*.whl
